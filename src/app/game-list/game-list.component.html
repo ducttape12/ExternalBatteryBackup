@@ -1,0 +1,14 @@
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search" aria-label="Game Title Search"
+        aria-describedby="button-addon2" [(ngModel)]="searchTerm" (ngModelChange)="performSearch()">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="resetFilter()">Clear</button>
+</div>
+
+<div class="list-group">
+    <a *ngFor="let game of gamesList" href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{game.title}}</h5>
+        </div>
+        <p class="mb-1">{{game.platform}}</p>
+    </a>
+</div>
