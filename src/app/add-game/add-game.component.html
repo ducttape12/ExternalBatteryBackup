@@ -1,0 +1,22 @@
+<h2>Add Game</h2>
+<div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control"
+        [ngClass]="inputIsValid(title) ? 'is-invalid' : ''"
+        id="title" placeholder="Game title" [formControl]="title">
+    <div class="invalid-feedback">
+        Title is required.
+    </div>
+</div>
+<div class="mb-3">
+    <label for="platform" class="form-label">Platform</label>
+    <input type="text" class="form-control"
+    [ngClass]="inputIsValid(platform) ? 'is-invalid' : ''"
+    id="platform" placeholder="Platform" [formControl]="platform">
+    <div class="invalid-feedback">
+        Platform is required.
+    </div>
+</div>
+<div class="text-end">
+    <button type="submit" class="btn btn-primary" (click)="addGame()">Add Game</button>
+</div>

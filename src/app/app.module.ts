@@ -1,22 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GameListComponent } from './game-list/game-list.component';
+import { AddGameComponent } from './add-game/add-game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameListComponent
+    GameListComponent,
+    AddGameComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
