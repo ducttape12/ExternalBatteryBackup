@@ -1,7 +1,7 @@
 <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Search" aria-label="Game Title Search"
-        aria-describedby="button-addon2" [(ngModel)]="searchTerm" (ngModelChange)="performSearch()">
-    <button class="btn btn-primary" type="button" id="button-addon2" (click)="resetFilter()">Clear</button>
+        [formControl]="searchTerm">
+    <button class="btn btn-primary" type="button" id="clear" (click)="resetFilter()">Clear</button>
 </div>
 
 <div class="d-flex justify-content-between">

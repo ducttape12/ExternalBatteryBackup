@@ -60,8 +60,8 @@ export class GamesService {
     });
   }
 
-  addGame(newGame: Game) {
-    newGame.id = this.nextId;
+  addGame(title: string, platform: string) {
+    const newGame = new Game(this.nextId, title, platform);
     this.games.push(newGame);
     this.nextId++;
 
