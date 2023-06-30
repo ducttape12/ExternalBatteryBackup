@@ -1,7 +1,9 @@
 <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Search" aria-label="Game Title Search"
         [formControl]="searchTerm">
-    <button class="btn btn-primary" type="button" id="clear" (click)="resetFilter()">Clear</button>
+    <button class="btn btn-primary" type="button" id="clear" (click)="resetFilter()">
+        <ng-icon name="bootstrapXCircle"></ng-icon>
+    </button>
 </div>
 
 <div class="container">
@@ -10,7 +12,7 @@
             <h2>Games List</h2>
         </div>
         <div class="col text-end">
-            <a routerLink="/add-game" class="btn btn-secondary">+ Add Game</a>
+            <a routerLink="/add-game" class="btn btn-secondary">Add Game</a>
         </div>
     </div>
 </div>
