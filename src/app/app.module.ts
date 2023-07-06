@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapXCircle, bootstrapBatteryCharging } from '@ng-icons/bootstrap-icons';
+import { bootstrapXCircle, bootstrapBatteryCharging, bootstrapChevronLeft } from '@ng-icons/bootstrap-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +25,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    NgIconsModule.withIcons({ bootstrapXCircle, bootstrapBatteryCharging }),
+    NgIconsModule.withIcons({ bootstrapXCircle, bootstrapBatteryCharging, bootstrapChevronLeft }),
   ],
   providers: [],
   bootstrap: [AppComponent]
