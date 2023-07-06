@@ -10,13 +10,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GameListComponent } from './game-list/game-list.component';
 import { AddGameComponent } from './add-game/add-game.component';
 import { ViewGameComponent } from './view-game/view-game.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameListComponent,
     AddGameComponent,
-    ViewGameComponent
+    ViewGameComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

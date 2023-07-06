@@ -3,12 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { GameListComponent } from './game-list/game-list.component';
 import { AddGameComponent } from './add-game/add-game.component';
 import { ViewGameComponent } from './view-game/view-game.component';
+import {
+  ApplicationTitle, GamesListPath, AddGamePath, ViewGamePathFull, AddGameTitle,
+  ViewGameTitle, GamesListTitle
+} from './route-constants'
+
+function GeneratePageTitle(title: string): string {
+  return `${ApplicationTitle} | ${title}`;
+}
 
 const routes: Routes = [
-  { path: 'add-game', component: AddGameComponent, title: "External Battery Backup | Add Game" },
-  { path: 'view-game/:id', component: ViewGameComponent, title: "External Battery Backup | View Game" },
-  { path: '', component: GameListComponent, title: "External Battery Backup | Home"},
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: AddGamePath, component: AddGameComponent, title: GeneratePageTitle(AddGameTitle) },
+  { path: ViewGamePathFull, component: ViewGameComponent, title: GeneratePageTitle(ViewGameTitle) },
+  { path: GamesListPath, component: GameListComponent, title: GeneratePageTitle(GamesListTitle) },
+  { path: '**', redirectTo: GamesListPath, pathMatch: 'full' }
 ];
 
 @NgModule({

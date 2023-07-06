@@ -1,0 +1,12 @@
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <div *ngIf="displayBackButton; then backButton else titleBar"></div>
+        <ng-template #backButton>Content to render when condition is true.</ng-template>
+        <ng-template #titleBar>
+            <a class="navbar-brand" href="#">
+                <ng-icon name="bootstrapBatteryCharging"></ng-icon> Battery Backup
+            </a>
+        </ng-template>
+
+    </div>
+</nav>

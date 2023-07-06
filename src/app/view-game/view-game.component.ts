@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { GamesService } from '../games/games.service';
 import { Game } from '../games/game';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-game',
@@ -11,7 +11,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 export class ViewGameComponent {
   game: Game | undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router, private gamesService: GamesService) {
+  constructor(private route: ActivatedRoute, private gamesService: GamesService) {
 
   }
 
