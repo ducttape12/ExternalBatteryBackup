@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row justify-content-around">
+            <div class="col">
+                <h4>Save Slot {{id + 1}}</h4>
+            </div>
+            <div class="col text-end">
+                <button type="button" class="btn btn-danger" (click)="deleteSlot()">
+                    <ng-icon name="bootstrapTrash"></ng-icon> Delete
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
+            <div>
+                <label class="form-label">Save Slot Type</label>
+            </div>
+            <input class="btn-check" type="radio" name="slotType{{id}}" id="highScoresRadio{{id}}"
+                [formControl]="saveSlotTypeFormControl" value="highscores">
+            <label class="btn btn-outline-secondary me-1" for="highScoresRadio{{id}}">
+                High Scores
+            </label>
+            <input class="btn-check" type="radio" name="slotType{{id}}" id="passwordsRadio{{id}}"
+                [formControl]="saveSlotTypeFormControl" value="passwords">
+            <label class="btn btn-outline-secondary ms-1" for="passwordsRadio{{id}}">
+                Passwords
+            </label>
+        </div>
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Description (optional)</label>
+            <input type="text" class="form-control" placeholder="Description" [formControl]="titleFormControl">
+            <div class="invalid-feedback">
+                Title is required.
+            </div>
+        </div>
+    </div>
+</div>

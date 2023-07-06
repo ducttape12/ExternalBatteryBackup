@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Game } from './game';
 import { Observable, of } from 'rxjs';
+import { SaveSlot } from './save-slot';
 
 @Injectable({
   providedIn: 'root'
@@ -67,8 +68,8 @@ export class GamesService {
     });
   }
 
-  addGame(title: string, platform: string) {
-    const newGame = new Game(this.nextId, title, platform);
+  addGame(title: string, platform: string, saveSlots: SaveSlot[]) {
+    const newGame = new Game(this.nextId, title, platform, saveSlots);
     this.games.push(newGame);
     this.nextId++;
 

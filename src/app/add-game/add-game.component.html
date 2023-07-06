@@ -1,23 +1,34 @@
 <h2>Add Game</h2>
 <div class="mb-3">
     <label for="title" class="form-label">Title</label>
-    <input type="text" class="form-control"
-        [ngClass]="inputIsValid(title) ? 'is-invalid' : ''"
-        id="title" placeholder="Game title" [formControl]="title">
+    <input type="text" class="form-control" [ngClass]="inputIsValid(title) ? 'is-invalid' : ''" id="title"
+        placeholder="Game title" [formControl]="title">
     <div class="invalid-feedback">
         Title is required.
     </div>
 </div>
 <div class="mb-3">
     <label for="platform" class="form-label">Platform</label>
-    <input type="text" class="form-control"
-    [ngClass]="inputIsValid(platform) ? 'is-invalid' : ''"
-    id="platform" placeholder="Platform" [formControl]="platform">
+    <input type="text" class="form-control" [ngClass]="inputIsValid(platform) ? 'is-invalid' : ''" id="platform"
+        placeholder="Platform" [formControl]="platform">
     <div class="invalid-feedback">
         Platform is required.
     </div>
 </div>
+
+<h3>Save Slots</h3>
+
+<div *ngFor="let slot of saveSlots; index as id" class="m-3">
+    <app-edit-save-slot [id]="id" [(title)]="slot.description" [(type)]="slot.type"
+        (delete)="deleteSaveSlot($event)"></app-edit-save-slot>
+</div>
+
+<div class="d-grid gap-2 my-2">
+    <button type="button" class="btn btn-success" (click)="addSaveSlot()">
+        <ng-icon name="bootstrapPlusSquareDotted"></ng-icon> Add Save Slot</button>
+</div>
+
 <div class="text-end">
-    <button type="submit" class="btn btn-secondary mx-3" (click)="addGame()">Add Game</button>
-    <a routerLink="/" class="btn btn-primary">Cancel</a>
+    <button type="submit" class="btn btn-primary mx-3" (click)="addGame()">Add Game</button>
+    <a routerLink="{{gamesListPath}}" class="btn btn-secondary">Cancel</a>
 </div>

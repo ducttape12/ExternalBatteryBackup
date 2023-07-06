@@ -2,7 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapXCircle, bootstrapBatteryCharging, bootstrapChevronLeft } from '@ng-icons/bootstrap-icons';
+import {
+  bootstrapXCircle,
+  bootstrapBatteryCharging,
+  bootstrapChevronLeft,
+  bootstrapTrash,
+  bootstrapPlusSquareDotted
+} from '@ng-icons/bootstrap-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +17,7 @@ import { GameListComponent } from './game-list/game-list.component';
 import { AddGameComponent } from './add-game/add-game.component';
 import { ViewGameComponent } from './view-game/view-game.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { EditSaveSlotComponent } from './edit-save-slot/edit-save-slot.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +25,21 @@ import { NavigationComponent } from './navigation/navigation.component';
     GameListComponent,
     AddGameComponent,
     ViewGameComponent,
-    NavigationComponent
+    NavigationComponent,
+    EditSaveSlotComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    NgIconsModule.withIcons({ bootstrapXCircle, bootstrapBatteryCharging, bootstrapChevronLeft }),
+    NgIconsModule.withIcons({
+      bootstrapXCircle,
+      bootstrapBatteryCharging,
+      bootstrapChevronLeft,
+      bootstrapTrash,
+      bootstrapPlusSquareDotted
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

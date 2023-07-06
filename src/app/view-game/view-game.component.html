@@ -1,3 +1,7 @@
 <div *ngIf="game">
     {{game.id}} | {{game.title}} | {{game.platform}}
+
+    <ul>
+        <li *ngFor="let save of game.saveSlots">Type: {{save.type}} | {{save.description}}</li>
+    </ul>
 </div>

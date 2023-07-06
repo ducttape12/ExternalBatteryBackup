@@ -27,8 +27,6 @@ export class NavigationComponent {
 
   ngOnInit() {
     this.navEnd.subscribe(() => {
-      console.log(`Navigated to new URL ${this.router.url}`);
-
       if (this.router.url.includes(AddGamePath)) {
         this.navigationTitle = AddGameTitle;
         this.displayBackButton = true;
@@ -44,10 +42,6 @@ export class NavigationComponent {
         this.displayBackButton = false;
         this.backButtonRouterLink = '';
       }
-
-
-
     });
   }
-
 }

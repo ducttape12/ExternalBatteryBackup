@@ -1,11 +1,6 @@
-export class Game {
-    id: number;
-    title: string;
-    platform: string;
+import { SaveSlot } from "./save-slot";
 
-    constructor(id: number, title: string, platform: string) {
-        this.id = id;
-        this.title = title;
-        this.platform = platform;
+export class Game {
+    constructor(public id: number, public title: string, public platform: string, public saveSlots: SaveSlot[]) {
     }
 }
