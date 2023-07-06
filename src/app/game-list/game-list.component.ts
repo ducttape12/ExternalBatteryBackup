@@ -9,32 +9,35 @@ import { Game } from '../games/game';
   styleUrls: ['./game-list.component.css']
 })
 export class GameListComponent {
-  gamesList: Game[] = [];
+  gamesList: Game[] = []
+  filteredGames: Game[] = [];
   searchTerm = new FormControl('');
 
   constructor(private gamesService: GamesService) {
-    this.resetFilter();
-  }
-
-  resetFilter() {
-    this.searchTerm.setValue('');
-    this.gamesList = this.gamesService.getGames();
   }
 
   ngOnInit() {
+    this.gamesService.getGames().subscribe(games => this.gamesList = games);
+    this.searchTerm.setValue('');
+    this.resetFilter();
+
     this.searchTerm.valueChanges.subscribe(value => {
       this.filterGamesList();
     });
   }
 
+  resetFilter() {
+    this.filteredGames = Object.assign([], this.gamesList);
+  }
+
   filterGamesList() {
     if (this.searchTerm === null || this.searchTerm.value === null || this.searchTerm.value.trim() === '') {
-      this.gamesList = this.gamesService.getGames();
+      this.resetFilter();
       return;
     }
 
-    const lowerSearchTerm = this.searchTerm.value!.toLocaleLowerCase();
+    const lowerSearchTerm = this.searchTerm.value!.trim().toLocaleLowerCase();
 
-    this.gamesList = this.gamesService.getGames().filter(g => g.title.toLocaleLowerCase().startsWith(lowerSearchTerm));
+    this.filteredGames = this.gamesList.filter(g => g.title.toLocaleLowerCase().startsWith(lowerSearchTerm));
   }
 }

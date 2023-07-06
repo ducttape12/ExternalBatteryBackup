@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Game } from './game';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,14 @@ export class GamesService {
     this.nextId = id + 1;
   }
 
-  getGames(): Game[] {
-    return this.games;
+  getGames(): Observable<Game[]> {
+    return of(this.games);
+  }
+
+  getGame(id: number): Observable<Game> {
+    const game = this.games.filter(g => g.id === id)[0];
+
+    return of(game);
   }
 
   private loadGames(): Game[] {
