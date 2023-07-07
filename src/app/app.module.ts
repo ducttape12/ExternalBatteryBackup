@@ -18,6 +18,7 @@ import { AddGameComponent } from './add-game/add-game.component';
 import { ViewGameComponent } from './view-game/view-game.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { EditSaveSlotComponent } from './edit-save-slot/edit-save-slot.component';
+import { AddSaveComponent } from './add-save/add-save.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditSaveSlotComponent } from './edit-save-slot/edit-save-slot.component
     AddGameComponent,
     ViewGameComponent,
     NavigationComponent,
-    EditSaveSlotComponent
+    EditSaveSlotComponent,
+    AddSaveComponent
   ],
   imports: [
     BrowserModule,

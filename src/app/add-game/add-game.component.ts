@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GamesService } from '../games/games.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GamesListPath } from '../route-constants';
+import { GamesListPath } from '../app-configuration';
 import { SaveSlot } from '../games/save-slot';
 import { SaveSlotType } from '../games/save-slot-type';
 
@@ -17,6 +17,7 @@ export class AddGameComponent {
   addAttempted = false;
   gamesListPath: string = GamesListPath;
   saveSlots: SaveSlot[] = [];
+  saveSlotId: number = 0;
 
   constructor(private gamesService: GamesService, private router: Router) { }
 
@@ -34,10 +35,12 @@ export class AddGameComponent {
   }
 
   addSaveSlot() {
-    this.saveSlots.push(new SaveSlot('', SaveSlotType.HighScores));
+    this.saveSlots.push(new SaveSlot(this.saveSlotId, '', SaveSlotType.HighScores));
+    this.saveSlotId++;
   }
 
-  deleteSaveSlot(id: number) {
-    this.saveSlots.splice(id, 1);
+  deleteSaveSlot(saveSlotId: number) {
+    const saveSlotIndex = this.saveSlots.findIndex(s => s.id === saveSlotId);
+    this.saveSlots.splice(saveSlotIndex, 1);
   }
 }

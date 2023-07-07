@@ -6,7 +6,7 @@ import { ViewGameComponent } from './view-game/view-game.component';
 import {
   ApplicationTitle, GamesListPath, AddGamePath, ViewGamePathFull, AddGameTitle,
   ViewGameTitle, GamesListTitle
-} from './route-constants'
+} from './app-configuration'
 
 function GeneratePageTitle(title: string): string {
   return `${ApplicationTitle} | ${title}`;

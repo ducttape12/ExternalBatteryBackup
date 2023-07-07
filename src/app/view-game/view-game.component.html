@@ -1,7 +1,27 @@
 <div *ngIf="game">
-    {{game.id}} | {{game.title}} | {{game.platform}}
+    <h1>{{game.title}} <small class="text-body-secondary">{{game.platform}}</small></h1>
 
-    <ul>
-        <li *ngFor="let save of game.saveSlots">Type: {{save.type}} | {{save.description}}</li>
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li *ngFor="let saveSlot of game.saveSlots; index as saveSlotIndex" [ngbNavItem]="saveSlotIndex">
+            <button ngbNavLink>{{getSaveSlotDescription(saveSlot)}}</button>
+            <ng-template ngbNavContent>
+                <ol class="list-group list-group-flush list-group-numbered">
+                    <li *ngFor="let save of saveSlot.saves"
+                        class="list-group-item d-flex justify-content-between align-items-start">
+
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">{{save.value}}</div>
+                            <small>{{save.description}}</small>
+
+                        </div>
+                        <span class="badge bg-primary">{{save.timestamp | date:'short'}}</span>
+                    </li>
+                </ol>
+                <app-add-save [saveType]="saveSlot.type" [saveDescription]="saveSlot.description"
+                    (saveCreated)="addSave($event, saveSlot)"></app-add-save>
+            </ng-template>
+        </li>
     </ul>
+
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
 </div>

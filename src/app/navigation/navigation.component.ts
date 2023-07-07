@@ -3,7 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AddGamePath, ViewGamePath, ViewGameTitle, AddGameTitle, ApplicationTitle, GamesListPath }
-  from '../route-constants'
+  from '../app-configuration'
 
 @Component({
   selector: 'app-navigation',

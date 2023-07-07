@@ -1,0 +1,33 @@
+<ng-template #addSave let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add {{getExtendedSaveSlotDescription()}}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <label for="dateOfBirth">{{getSaveSlotDescription()}}</label>
+                <input id="dateOfBirth" class="form-control" [ngClass]="inputIsValid(value) ? 'is-invalid' : ''"
+                    placeholder="{{getSaveSlotDescription()}}" name="value" type="{{getInputType()}}"
+                    [formControl]="value" />
+                <div class="invalid-feedback">
+                    {{getSaveSlotDescription()}} is required.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="dateOfBirth">Description (optional)</label>
+                <input id="dateOfBirth" class="form-control" placeholder="Description" name="description" type="text"
+                    [formControl]="description" />
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveModal()">Add {{getSaveSlotDescription()}}</button>
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+    </div>
+</ng-template>
+
+<div class="d-grid gap-2 my-2">
+    <button type="button" class="btn btn-success" (click)="openModel(addSave)">
+        <ng-icon name="bootstrapPlusSquareDotted"></ng-icon> Add {{getExtendedSaveSlotDescription()}}</button>
+</div>
