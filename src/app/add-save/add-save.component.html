@@ -4,26 +4,55 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
     </div>
     <div class="modal-body">
-        <form>
-            <div class="mb-3">
-                <label for="dateOfBirth">{{getSaveSlotDescription()}}</label>
-                <input id="dateOfBirth" class="form-control" [ngClass]="inputIsValid(value) ? 'is-invalid' : ''"
-                    placeholder="{{getSaveSlotDescription()}}" name="value" type="{{getInputType()}}"
-                    [formControl]="value" />
-                <div class="invalid-feedback">
-                    {{getSaveSlotDescription()}} is required.
+        <div class="mb-3">
+            <label for="dateOfBirth">{{getSaveSlotDescription()}}</label>
+            <input id="dateOfBirth" class="form-control" [ngClass]="inputIsValid(value) ? 'is-invalid' : ''"
+                placeholder="{{getSaveSlotDescription()}}" name="value" type="{{getInputType()}}"
+                [formControl]="value" />
+            <div class="invalid-feedback">
+                {{getSaveSlotDescription()}} is required.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="dateOfBirth">Description (optional)</label>
+            <input id="dateOfBirth" class="form-control" placeholder="Description" name="description" type="text"
+                [formControl]="description" />
+        </div>
+
+        <div class="mb-3">
+            <div>
+                <label>Timestamp</label>
+            </div>
+            <div ngbAccordion #accordion="ngbAccordion">
+                <div ngbAccordionItem="timestampPicker">
+                    <h2 ngbAccordionHeader>
+                        <button ngbAccordionButton>{{timestamp | date:'short'}}</button>
+                    </h2>
+                    <div ngbAccordionCollapse>
+                        <div ngbAccordionBody>
+                            <ng-template>
+                                <div class="d-sm-flex justify-content-evenly align-items-center mb-2">
+                                    <ngb-datepicker class="mx-2" #dp [(ngModel)]="dateModel"
+                                        (ngModelChange)="updateTimestamp()"></ngb-datepicker>
+                                    <ngb-timepicker class="me-2" [(ngModel)]="timeModel" [meridian]="true"
+                                        (ngModelChange)="updateTimestamp()"></ngb-timepicker>
+                                </div>
+                                <div class="d-flex justify-content-evenly align-items-center">
+                                    <button class="btn btn-outline-danger w-100 mx-2"
+                                        (click)="resetTimestamp()">Reset</button>
+                                        <button class="btn btn-outline-success w-100 me-2"
+                                            (click)="accordion.toggle('timestampPicker')">Done</button>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="dateOfBirth">Description (optional)</label>
-                <input id="dateOfBirth" class="form-control" placeholder="Description" name="description" type="text"
-                    [formControl]="description" />
-            </div>
-        </form>
+        </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="saveModal()">Add {{getSaveSlotDescription()}}</button>
         <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="saveModal()">Add {{getSaveSlotDescription()}}</button>
     </div>
 </ng-template>
 
