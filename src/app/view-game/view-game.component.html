@@ -16,8 +16,8 @@
 </ng-template>
 
 <div *ngIf="game">
-    <div class="row">
-        <div class="col">
+    <div class="row justify-content-between">
+        <div class="col-9">
             <h1>{{game.title}}</h1>
             <span class="text-body-secondary">{{game.platform}}</span>
         </div>
@@ -27,8 +27,8 @@
                     <ng-icon name="bootstrapList"></ng-icon>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="gameOptions">
-                    <a ngbDropdownItem routerLink="/{{editGamePath}}/{{game.id}}">Edit Game</a>
-                    <button ngbDropdownItem (click)="openModal(deleteGame)">Delete Game</button>
+                    <a ngbDropdownItem routerLink="/{{editGamePath}}/{{game.id}}">Edit</a>
+                    <button ngbDropdownItem (click)="openModal(deleteGame)">Delete</button>
                 </div>
             </div>
         </div>

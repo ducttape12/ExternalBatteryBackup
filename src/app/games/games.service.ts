@@ -48,7 +48,7 @@ export class GamesService {
   }
 
   private deepCopyGame(gameOriginal: Game) {
-    const gameCopy = new Game(gameOriginal.id, gameOriginal.platform, gameOriginal.title);
+    const gameCopy = new Game(gameOriginal.id, gameOriginal.title, gameOriginal.platform);
 
     for (let saveSlotOriginal of gameOriginal.saveSlots) {
       const saveSlotCopy = this.deepCopySaveSlot(saveSlotOriginal);
