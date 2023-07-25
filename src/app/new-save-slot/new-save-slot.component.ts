@@ -18,6 +18,9 @@ export class NewSaveSlotComponent {
   @Input() id: number = 0;
 
   @Output() delete = new EventEmitter<number>();
+
+  @Input() isPinned: boolean = false;
+  @Output() pin = new EventEmitter<any>();
   
   saveSlotTypeFormControl = new FormControl('highscores');
 
@@ -46,5 +49,9 @@ export class NewSaveSlotComponent {
 
   deleteSlot() {
     this.delete.emit(this.id);
+  }
+
+  pinSaveSlot() {
+    this.pin.emit(this.id);
   }
 }

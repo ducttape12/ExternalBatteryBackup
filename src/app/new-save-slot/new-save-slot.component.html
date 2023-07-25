@@ -2,7 +2,12 @@
     <div class="card-header">
         <div class="row justify-content-around">
             <div class="col">
-                <h4>Save Slot</h4>
+                <h4>
+                    <button type="button" class="btn btn-outline-info" [ngClass]="isPinned ? 'active' : ''"
+                        (click)="pinSaveSlot()">
+                        <ng-icon name="{{isPinned ? 'bootstrapPinFill' : 'bootstrapPinAngle'}}"></ng-icon>
+                    </button> Save Slot
+                </h4>
             </div>
             <div class="col text-end">
                 <button type="button" class="btn btn-danger" (click)="deleteSlot()">

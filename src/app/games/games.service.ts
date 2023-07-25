@@ -48,7 +48,8 @@ export class GamesService {
   }
 
   private deepCopyGame(gameOriginal: Game) {
-    const gameCopy = new Game(gameOriginal.id, gameOriginal.title, gameOriginal.platform);
+    const gameCopy = new Game(gameOriginal.id, gameOriginal.title, gameOriginal.platform,
+      gameOriginal.pinnedSaveSlotId);
 
     for (let saveSlotOriginal of gameOriginal.saveSlots) {
       const saveSlotCopy = this.deepCopySaveSlot(saveSlotOriginal);
@@ -101,8 +102,8 @@ export class GamesService {
     });
   }
 
-  addGame(title: string, platform: string, saveSlots: SaveSlot[]) {
-    const newGame = new Game(this.nextId, title, platform, saveSlots);
+  addGame(title: string, platform: string, pinnedSaveSlotId: number, saveSlots: SaveSlot[]) {
+    const newGame = new Game(this.nextId, title, platform, pinnedSaveSlotId, saveSlots);
     this.games.push(newGame);
     this.nextId++;
 

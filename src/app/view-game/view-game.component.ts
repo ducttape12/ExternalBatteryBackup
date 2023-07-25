@@ -19,6 +19,7 @@ import { GamesListPath } from '../app-configuration';
 export class ViewGameComponent {
   game: Game | undefined;
   editGamePath = EditGamePath;
+  activeTabId: number = 0;
 
   constructor(private route: ActivatedRoute, private gamesService: GamesService, private modalService: NgbModal,
     private router: Router) {
@@ -28,6 +29,10 @@ export class ViewGameComponent {
     const gameId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.gamesService.getGame(gameId).subscribe(game => {
       this.game = game;
+
+      const pinnedSaveSlotIndex = this.game.saveSlots.findIndex(s => s.id === game.pinnedSaveSlotId);
+
+      this.activeTabId = pinnedSaveSlotIndex >= 0 ? pinnedSaveSlotIndex : 0;
     });
   }
 

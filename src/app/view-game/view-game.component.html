@@ -28,12 +28,12 @@
                 </button>
                 <div ngbDropdownMenu aria-labelledby="gameOptions">
                     <a ngbDropdownItem routerLink="/{{editGamePath}}/{{game.id}}">Edit</a>
-                    <button ngbDropdownItem (click)="openModal(deleteGame)">Delete</button>
+                    <button type="button" ngbDropdownItem (click)="openModal(deleteGame)">Delete</button>
                 </div>
             </div>
         </div>
     </div>
-    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <ul ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
         <li *ngFor="let saveSlot of game.saveSlots; index as saveSlotIndex" [ngbNavItem]="saveSlotIndex">
             <button ngbNavLink>{{getSaveSlotDescription(saveSlot)}}</button>
             <ng-template ngbNavContent>

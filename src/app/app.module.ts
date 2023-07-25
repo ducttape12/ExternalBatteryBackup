@@ -9,7 +9,9 @@ import {
   bootstrapTrash,
   bootstrapPlusSquareDotted,
   bootstrapArrowCounterclockwise,
-  bootstrapList
+  bootstrapList,
+  bootstrapPinAngle,
+  bootstrapPinFill
 } from '@ng-icons/bootstrap-icons';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +51,9 @@ import { EditGameComponent } from './edit-game/edit-game.component';
       bootstrapTrash,
       bootstrapPlusSquareDotted,
       bootstrapArrowCounterclockwise,
-      bootstrapList
+      bootstrapList,
+      bootstrapPinAngle,
+      bootstrapPinFill
     }),
   ],
   providers: [],
