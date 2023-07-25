@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { GameListComponent } from './game-list/game-list.component';
 import { AddGameComponent } from './add-game/add-game.component';
 import { ViewGameComponent } from './view-game/view-game.component';
+import { EditGameComponent } from './edit-game/edit-game.component';
 import {
   ApplicationTitle, GamesListPath, AddGamePath, ViewGamePathFull, AddGameTitle,
-  ViewGameTitle, GamesListTitle
+  ViewGameTitle, GamesListTitle, EditGamePathFull, EditGameTitle
 } from './app-configuration'
 
 function GeneratePageTitle(title: string): string {
@@ -15,6 +16,7 @@ function GeneratePageTitle(title: string): string {
 const routes: Routes = [
   { path: AddGamePath, component: AddGameComponent, title: GeneratePageTitle(AddGameTitle) },
   { path: ViewGamePathFull, component: ViewGameComponent, title: GeneratePageTitle(ViewGameTitle) },
+  { path: EditGamePathFull, component: EditGameComponent, title: GeneratePageTitle(EditGameTitle) },
   { path: GamesListPath, component: GameListComponent, title: GeneratePageTitle(GamesListTitle) },
   { path: '**', redirectTo: GamesListPath, pathMatch: 'full' }
 ];

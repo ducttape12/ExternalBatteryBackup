@@ -30,7 +30,7 @@ export class AddGameComponent {
     
     if(this.title.valid && this.platform.valid) {
       this.gamesService.addGame(this.title.value!, this.platform.value!, this.saveSlots);
-      this.router.navigate([this.gamesListPath]);
+      this.router.navigate([GamesListPath]);
     }
   }
 

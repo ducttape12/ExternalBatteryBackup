@@ -30,13 +30,43 @@ export class GamesService {
   }
 
   getGames(): Observable<Game[]> {
-    return of(this.games);
+    const gamesCopy: Game[] = [];
+
+    for (let gameOriginal of this.games) {
+      const gameCopy = this.deepCopyGame(gameOriginal);
+      gamesCopy.push(gameCopy);
+    }
+
+    return of(gamesCopy);
   }
 
   getGame(id: number): Observable<Game> {
-    const game = this.games.filter(g => g.id === id)[0];
+    const gameOriginal = this.games.filter(g => g.id === id)[0];
+    const gameCopy = this.deepCopyGame(gameOriginal);
 
-    return of(game);
+    return of(gameCopy);
+  }
+
+  private deepCopyGame(gameOriginal: Game) {
+    const gameCopy = new Game(gameOriginal.id, gameOriginal.platform, gameOriginal.title);
+
+    for (let saveSlotOriginal of gameOriginal.saveSlots) {
+      const saveSlotCopy = this.deepCopySaveSlot(saveSlotOriginal);
+      gameCopy.saveSlots.push(saveSlotCopy);
+    }
+
+    return gameCopy;
+  }
+
+  private deepCopySaveSlot(saveSlotOriginal: SaveSlot) {
+    const saveSlotCopy = new SaveSlot(saveSlotOriginal.id, saveSlotOriginal.description, saveSlotOriginal.type);
+
+    for (let saveOriginal of saveSlotOriginal.saves) {
+      const saveCopy = new Save(saveOriginal.value, saveOriginal.description, saveOriginal.timestamp);
+      saveSlotCopy.saves.push(saveCopy);
+    }
+
+    return saveSlotCopy;
   }
 
   private loadGames(): Game[] {
@@ -80,14 +110,29 @@ export class GamesService {
     this.saveGames();
   }
 
-  deleteGame(gameId: number) {
-    this.games = this.games.filter(g => g.id != gameId);
+  updateGame(gameId: number, title: string, platform: string, saveSlots: SaveSlot[]) {
+    const gameIndex = this.games.findIndex(g => g.id === gameId);
+
+    if (gameIndex < 0) {
+      throw new Error(`Update Failed.  Cannot find game with ID ${gameId}.`);
+    }
+
+    this.games[gameIndex].title = title;
+    this.games[gameIndex].platform = platform;
+    this.games[gameIndex].saveSlots = saveSlots;
 
     this.sortGames();
     this.saveGames();
   }
 
-  addSaveToGame(gameId: number, saveSlotId: number, save: Save) {
+  deleteGame(gameId: number) {
+    this.games = this.games.filter(g => g.id !== gameId);
+
+    this.sortGames();
+    this.saveGames();
+  }
+
+  addSaveToGame(gameId: number, saveSlotId: number, save: Save): Observable<Game> {
     const game = this.games.find(g => g.id === gameId);
 
     if (game === undefined) {
@@ -115,5 +160,7 @@ export class GamesService {
     }
 
     this.saveGames();
+
+    return this.getGame(gameId);
   }
 }

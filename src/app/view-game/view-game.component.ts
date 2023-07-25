@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SaveSlot } from '../games/save-slot';
 import { SaveSlotType } from '../games/save-slot-type';
 import { Save } from '../games/save';
+import { EditGamePath } from '../app-configuration';
 
 @Component({
   selector: 'app-view-game',
@@ -13,6 +14,7 @@ import { Save } from '../games/save';
 })
 export class ViewGameComponent {
   game: Game | undefined;
+  editGamePath = EditGamePath;
 
   constructor(private route: ActivatedRoute, private gamesService: GamesService) {
 
@@ -20,19 +22,21 @@ export class ViewGameComponent {
 
   ngOnInit() {
     const gameId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.gamesService.getGame(gameId).subscribe(game => this.game = game);
+    this.gamesService.getGame(gameId).subscribe(game => {
+      this.game = game;
+    });
   }
 
   getSaveSlotDescription(saveSlot: SaveSlot) {
     let description = '';
 
-    if(saveSlot.type === SaveSlotType.HighScores) {
+    if (saveSlot.type === SaveSlotType.HighScores) {
       description = 'High Scores';
     } else if (saveSlot.type === SaveSlotType.Passwords) {
       description = 'Passwords';
     }
 
-    if(saveSlot.description !== '') {
+    if (saveSlot.description !== '') {
       description = `${description} (${saveSlot.description})`;
     }
 
@@ -40,6 +44,10 @@ export class ViewGameComponent {
   }
 
   addSave(save: Save, saveSlot: SaveSlot) {
-    this.gamesService.addSaveToGame(this.game!.id, saveSlot.id, save);
+    this.gamesService
+      .addSaveToGame(this.game!.id, saveSlot.id, save)
+      .subscribe(game => {
+        this.game = game;
+      });
   }
 }

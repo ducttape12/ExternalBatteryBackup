@@ -2,38 +2,62 @@
     <div class="card-header">
         <div class="row justify-content-around">
             <div class="col">
-                <h4>Save Slot</h4>
+                <span *ngIf="markedForDeletion; then titleMarkedForDeletion else title"></span>
+                <ng-template #title>
+                    <h4>Save Slot</h4>
+                </ng-template>
+                <ng-template #titleMarkedForDeletion>
+                    <h4 class="text-decoration-line-through">Save Slot</h4>
+                </ng-template>
             </div>
             <div class="col text-end">
-                <button type="button" class="btn btn-danger" (click)="deleteSlot()">
-                    <ng-icon name="bootstrapTrash"></ng-icon> Delete
-                </button>
+                <span *ngIf="markedForDeletion; then undeleteOption else deleteOption"></span>
+                <ng-template #deleteOption>
+                    <button type="button" class="btn btn-danger" (click)="deleteSlot()">
+                        <ng-icon name="bootstrapTrash"></ng-icon> Delete
+                    </button>
+                </ng-template>
+                <ng-template #undeleteOption>
+                    <button type="button" class="btn btn-warning" (click)="deleteSlot()">
+                        <ng-icon name="bootstrapArrowCounterclockwise"></ng-icon> Undelete
+                    </button>
+                </ng-template>
             </div>
         </div>
     </div>
-    <div class="card-body">
-        <div class="mb-3">
-            <div>
-                <label class="form-label">Save Slot Type</label>
+    <div *ngIf="markedForDeletion; then cardBodyMarkedForDeletion else cardBody"></div>
+    <ng-template #cardBody>
+        <div class="card-body">
+            <div class="mb-3">
+                <div>
+                    <label class="form-label">Save Slot Type</label>
+                </div>
+                <input class="btn-check" type="radio" name="slotType{{id}}" id="highScoresRadio{{id}}"
+                    [formControl]="saveSlotTypeFormControl" value="highscores">
+                <label class="btn btn-outline-secondary me-1" for="highScoresRadio{{id}}">
+                    High Scores
+                </label>
+                <input class="btn-check" type="radio" name="slotType{{id}}" id="passwordsRadio{{id}}"
+                    [formControl]="saveSlotTypeFormControl" value="passwords">
+                <label class="btn btn-outline-secondary ms-1" for="passwordsRadio{{id}}">
+                    Passwords
+                </label>
             </div>
-            <input class="btn-check" type="radio" name="slotType{{id}}" id="highScoresRadio{{id}}"
-                [formControl]="saveSlotTypeFormControl" value="highscores">
-            <label class="btn btn-outline-secondary me-1" for="highScoresRadio{{id}}">
-                High Scores
-            </label>
-            <input class="btn-check" type="radio" name="slotType{{id}}" id="passwordsRadio{{id}}"
-                [formControl]="saveSlotTypeFormControl" value="passwords">
-            <label class="btn btn-outline-secondary ms-1" for="passwordsRadio{{id}}">
-                Passwords
-            </label>
-        </div>
 
-        <div class="mb-3">
-            <label for="title" class="form-label">Description (optional)</label>
-            <input type="text" class="form-control" placeholder="Description" [formControl]="titleFormControl">
-            <div class="invalid-feedback">
-                Title is required.
+            <div class="mb-3">
+                <label for="title" class="form-label">Description (optional)</label>
+                <input type="text" class="form-control" placeholder="Description" [formControl]="titleFormControl">
+                <div class="invalid-feedback">
+                    Title is required.
+                </div>
             </div>
         </div>
-    </div>
+    </ng-template>
+    <ng-template #cardBodyMarkedForDeletion>
+        <div class="card-body">
+            <ngb-alert [dismissible]="false">
+                {{getSaveSlotDescription()}} marked for deletion
+            </ngb-alert>
+        </div>
+    </ng-template>
 </div>

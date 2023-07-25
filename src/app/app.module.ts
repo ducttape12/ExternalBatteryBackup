@@ -7,7 +7,8 @@ import {
   bootstrapBatteryCharging,
   bootstrapChevronLeft,
   bootstrapTrash,
-  bootstrapPlusSquareDotted
+  bootstrapPlusSquareDotted,
+  bootstrapArrowCounterclockwise
 } from '@ng-icons/bootstrap-icons';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,8 @@ import { ViewGameComponent } from './view-game/view-game.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { EditSaveSlotComponent } from './edit-save-slot/edit-save-slot.component';
 import { AddSaveComponent } from './add-save/add-save.component';
+import { NewSaveSlotComponent } from './new-save-slot/new-save-slot.component';
+import { EditGameComponent } from './edit-game/edit-game.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { AddSaveComponent } from './add-save/add-save.component';
     ViewGameComponent,
     NavigationComponent,
     EditSaveSlotComponent,
-    AddSaveComponent
+    AddSaveComponent,
+    NewSaveSlotComponent,
+    EditGameComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import { AddSaveComponent } from './add-save/add-save.component';
       bootstrapBatteryCharging,
       bootstrapChevronLeft,
       bootstrapTrash,
-      bootstrapPlusSquareDotted
+      bootstrapPlusSquareDotted,
+      bootstrapArrowCounterclockwise
     }),
   ],
   providers: [],

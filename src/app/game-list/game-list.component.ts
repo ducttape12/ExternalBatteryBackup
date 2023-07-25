@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GamesService } from '../games/games.service';
 import { FormControl } from '@angular/forms';
 import { Game } from '../games/game';
+import { ViewGamePath } from '../app-configuration';
 
 @Component({
   selector: 'app-game-list',
@@ -12,6 +13,7 @@ export class GameListComponent {
   gamesList: Game[] = []
   filteredGames: Game[] = [];
   searchTerm = new FormControl('');
+  viewGamePath = ViewGamePath;
 
   constructor(private gamesService: GamesService) {
   }
