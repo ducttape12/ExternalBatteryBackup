@@ -8,7 +8,8 @@ import {
   bootstrapChevronLeft,
   bootstrapTrash,
   bootstrapPlusSquareDotted,
-  bootstrapArrowCounterclockwise
+  bootstrapArrowCounterclockwise,
+  bootstrapList
 } from '@ng-icons/bootstrap-icons';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -47,7 +48,8 @@ import { EditGameComponent } from './edit-game/edit-game.component';
       bootstrapChevronLeft,
       bootstrapTrash,
       bootstrapPlusSquareDotted,
-      bootstrapArrowCounterclockwise
+      bootstrapArrowCounterclockwise,
+      bootstrapList
     }),
   ],
   providers: [],
