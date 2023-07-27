@@ -37,6 +37,8 @@
         <li *ngFor="let saveSlot of game.saveSlots; index as saveSlotIndex" [ngbNavItem]="saveSlotIndex">
             <button ngbNavLink>{{getSaveSlotDescription(saveSlot)}}</button>
             <ng-template ngbNavContent>
+                <app-add-save [saveType]="saveSlot.type" [saveDescription]="saveSlot.description"
+                    (saveCreated)="addSave($event, saveSlot)"></app-add-save>
                 <ol class="list-group list-group-flush list-group-numbered">
                     <li *ngFor="let save of saveSlot.saves"
                         class="list-group-item d-flex justify-content-between align-items-start">
@@ -49,8 +51,6 @@
                         <span class="badge bg-primary">{{save.timestamp | date:'short'}}</span>
                     </li>
                 </ol>
-                <app-add-save [saveType]="saveSlot.type" [saveDescription]="saveSlot.description"
-                    (saveCreated)="addSave($event, saveSlot)"></app-add-save>
             </ng-template>
         </li>
     </ul>
