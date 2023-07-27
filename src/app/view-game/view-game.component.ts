@@ -6,9 +6,6 @@ import { SaveSlot } from '../games/save-slot';
 import { SaveSlotType } from '../games/save-slot-type';
 import { Save } from '../games/save';
 import { EditGamePath } from '../app-configuration';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbModal, NgbModalRef, NgbCalendar, NgbDateStruct, NgbTimeStruct, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { GamesListPath } from '../app-configuration';
 
 @Component({
@@ -21,8 +18,7 @@ export class ViewGameComponent {
   editGamePath = EditGamePath;
   activeTabId: number = 0;
 
-  constructor(private route: ActivatedRoute, private gamesService: GamesService, private modalService: NgbModal,
-    private router: Router) {
+  constructor(private route: ActivatedRoute, private gamesService: GamesService, private router: Router) {
   }
 
   ngOnInit() {
@@ -57,15 +53,5 @@ export class ViewGameComponent {
       .subscribe(game => {
         this.game = game;
       });
-  }
-
-  openModal(content: TemplateRef<any>) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
-      (result) => {
-        this.gamesService.deleteGame(this.game?.id as number);
-        this.router.navigate([GamesListPath]);
-      },
-      (reason) => { },
-    );
   }
 }

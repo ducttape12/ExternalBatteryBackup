@@ -25,6 +25,7 @@ import { EditSaveSlotComponent } from './edit-save-slot/edit-save-slot.component
 import { AddSaveComponent } from './add-save/add-save.component';
 import { NewSaveSlotComponent } from './new-save-slot/new-save-slot.component';
 import { EditGameComponent } from './edit-game/edit-game.component';
+import { DeleteGameComponent } from './delete-game/delete-game.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { EditGameComponent } from './edit-game/edit-game.component';
     EditSaveSlotComponent,
     AddSaveComponent,
     NewSaveSlotComponent,
-    EditGameComponent
+    EditGameComponent,
+    DeleteGameComponent
   ],
   imports: [
     BrowserModule,

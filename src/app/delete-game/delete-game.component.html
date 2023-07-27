@@ -1,0 +1,19 @@
+<ng-template #deleteGame let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title text-danger" id="modal-basic-title">Confirm Deletion</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <ngb-alert [dismissible]="false" [type]="'danger'">
+            <p><strong>WARNING: This operation cannot be undone!</strong></p>
+            <p>Do you really want to delete this game and all saves associated with it?</p>
+        </ngb-alert>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">No</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close()">Yes</button>
+    </div>
+</ng-template>
+
+
+<button type="button" ngbDropdownItem (click)="openModal(deleteGame)">Delete</button>
