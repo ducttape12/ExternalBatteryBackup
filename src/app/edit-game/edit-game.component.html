@@ -19,14 +19,12 @@
 <h3>Save Slots</h3>
 
 <div *ngFor="let slot of existingSaveSlots" class="m-3">
-    {{slot.id}}
     <app-edit-save-slot [id]="slot.id" [(title)]="slot.description" [(type)]="slot.type"
         (delete)="deleteExistingSaveSlot($event)" (undelete)="undeleteExistingSaveSlot($event)"
         [isPinned]="pinnedSaveSlotId === slot.id" (pin)="pinSaveSlot($event)"></app-edit-save-slot>
 </div>
 
 <div *ngFor="let slot of newSaveSlots" class="m-3">
-    {{slot.id}}
     <app-new-save-slot [id]="slot.id" [(title)]="slot.description" [(type)]="slot.type"
         (delete)="deleteNewSaveSlot($event)" [isPinned]="pinnedSaveSlotId === slot.id"
         (pin)="pinSaveSlot($event)"></app-new-save-slot>
