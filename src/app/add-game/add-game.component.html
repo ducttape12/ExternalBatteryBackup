@@ -20,7 +20,7 @@
 
 <div *ngFor="let slot of saveSlots" class="m-3">
     <app-new-save-slot [id]="slot.id" [(title)]="slot.description" [(type)]="slot.type"
-        (delete)="deleteSaveSlot($event)" [isPinned]="pinnedSlotId === slot.id"
+        (delete)="deleteSaveSlot($event)" [isPinned]="pinnedSaveSlotId === slot.id"
         (pin)="pinSaveSlot($event)"></app-new-save-slot>
 </div>
 

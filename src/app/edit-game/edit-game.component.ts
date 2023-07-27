@@ -15,6 +15,7 @@ import { ViewGamePath } from '../app-configuration';
 })
 export class EditGameComponent {
   id = 0;
+  pinnedSaveSlotId = 0;
   editGamePath = EditGamePath;
   title = new FormControl('', [Validators.required]);
   platform = new FormControl('', [Validators.required]);
@@ -26,7 +27,7 @@ export class EditGameComponent {
 
   newSaveSlots: SaveSlot[] = [];
 
-  saveSlotId: number = 0;
+  nextSaveSlotId: number = 0;
 
   constructor(private route: ActivatedRoute, private gamesService: GamesService, private router: Router) {
 
@@ -36,6 +37,7 @@ export class EditGameComponent {
     const gameId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.gamesService.getGame(gameId).subscribe(game => {
       this.id = game.id;
+      this.pinnedSaveSlotId = game.pinnedSaveSlotId;
       this.title.setValue(game.title);
       this.platform.setValue(game.platform);
 
@@ -46,7 +48,7 @@ export class EditGameComponent {
         }
       }
 
-      this.saveSlotId = maxId;
+      this.nextSaveSlotId = maxId + 1;
 
       this.existingSaveSlots = game.saveSlots;
     });
@@ -73,8 +75,8 @@ export class EditGameComponent {
   }
 
   addSaveSlot() {
-    this.newSaveSlots.push(new SaveSlot(this.saveSlotId, '', SaveSlotType.HighScores));
-    this.saveSlotId++;
+    this.newSaveSlots.push(new SaveSlot(this.nextSaveSlotId, '', SaveSlotType.HighScores));
+    this.nextSaveSlotId++;
   }
 
   deleteNewSaveSlot(saveSlotId: number) {
@@ -102,12 +104,20 @@ export class EditGameComponent {
         this.existingSaveSlots.filter(s => !this.existingSaveSlotIdsToDelete.includes(s.id))
           .concat(this.newSaveSlots);
 
-      this.gamesService.updateGame(this.id, this.title.value!, this.platform.value!, saveSlots);
+      this.gamesService.updateGame(this.id, this.title.value!, this.platform.value!, this.pinnedSaveSlotId, saveSlots);
       this.router.navigate([this.getViewGamePath()]);
     }
   }
 
   getViewGamePath() {
     return `/${this.viewGamePath}/${this.id}`;
+  }
+
+  pinSaveSlot(saveSlotId: number) {
+    if (this.pinnedSaveSlotId === saveSlotId) {
+      this.pinnedSaveSlotId = -1;
+    } else {
+      this.pinnedSaveSlotId = saveSlotId;
+    }
   }
 }

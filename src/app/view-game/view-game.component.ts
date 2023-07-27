@@ -31,7 +31,6 @@ export class ViewGameComponent {
       this.game = game;
 
       const pinnedSaveSlotIndex = this.game.saveSlots.findIndex(s => s.id === game.pinnedSaveSlotId);
-
       this.activeTabId = pinnedSaveSlotIndex >= 0 ? pinnedSaveSlotIndex : 0;
     });
   }

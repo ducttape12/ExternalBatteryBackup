@@ -17,8 +17,8 @@ export class AddGameComponent {
   addAttempted = false;
   gamesListPath: string = GamesListPath;
   saveSlots: SaveSlot[] = [];
-  saveSlotId: number = 0;
-  pinnedSlotId: number = 0;
+  nextSaveSlotId: number = 0;
+  pinnedSaveSlotId: number = -1;
 
   constructor(private gamesService: GamesService, private router: Router) { }
 
@@ -30,38 +30,26 @@ export class AddGameComponent {
     this.addAttempted = true;
 
     if (this.title.valid && this.platform.valid) {
-      this.gamesService.addGame(this.title.value!, this.platform.value!, this.pinnedSlotId, this.saveSlots);
+      this.gamesService.addGame(this.title.value!, this.platform.value!, this.pinnedSaveSlotId, this.saveSlots);
       this.router.navigate([GamesListPath]);
     }
   }
 
   addSaveSlot() {
-    this.saveSlots.push(new SaveSlot(this.saveSlotId, '', SaveSlotType.HighScores));
-    this.saveSlotId++;
+    this.saveSlots.push(new SaveSlot(this.nextSaveSlotId, '', SaveSlotType.HighScores));
+    this.nextSaveSlotId++;
   }
 
   deleteSaveSlot(saveSlotId: number) {
     const saveSlotIndex = this.saveSlots.findIndex(s => s.id === saveSlotId);
-
     this.saveSlots.splice(saveSlotIndex, 1);
-
-    // If deleting a pinned save slot, reassign the pin to the previous save slot
-    if (this.pinnedSlotId === saveSlotId) {
-      let newPinnedSaveSlotIndex = saveSlotIndex - 1;
-      if (newPinnedSaveSlotIndex < 0) {
-        newPinnedSaveSlotIndex = 0;
-      }
-
-      if(this.saveSlots.length > 0) {
-        this.pinnedSlotId = this.saveSlots[newPinnedSaveSlotIndex].id;
-      } else {
-        // No remaining save slots; the next slot will be automatically pinned
-        this.pinnedSlotId = this.saveSlotId;
-      }
-    }
   }
 
   pinSaveSlot(saveSlotId: number) {
-    this.pinnedSlotId = saveSlotId;
+    if(this.pinnedSaveSlotId === saveSlotId) {
+      this.pinnedSaveSlotId = -1;
+    } else {
+      this.pinnedSaveSlotId = saveSlotId;
+    }
   }
 }

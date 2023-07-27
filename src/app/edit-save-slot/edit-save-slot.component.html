@@ -4,7 +4,12 @@
             <div class="col">
                 <span *ngIf="markedForDeletion; then titleMarkedForDeletion else title"></span>
                 <ng-template #title>
-                    <h4>Save Slot</h4>
+                    <h4>
+                        <button type="button" class="btn btn-outline-info" [ngClass]="isPinned ? 'active' : ''"
+                            (click)="pinSaveSlot()">
+                            <ng-icon name="{{isPinned ? 'bootstrapPinFill' : 'bootstrapPinAngle'}}"></ng-icon>
+                        </button> Save Slot
+                    </h4>
                 </ng-template>
                 <ng-template #titleMarkedForDeletion>
                     <h4 class="text-decoration-line-through">Save Slot</h4>

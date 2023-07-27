@@ -111,7 +111,7 @@ export class GamesService {
     this.saveGames();
   }
 
-  updateGame(gameId: number, title: string, platform: string, saveSlots: SaveSlot[]) {
+  updateGame(gameId: number, title: string, platform: string, pinnedSaveSlotId: number, saveSlots: SaveSlot[]) {
     const gameIndex = this.games.findIndex(g => g.id === gameId);
 
     if (gameIndex < 0) {
@@ -121,6 +121,7 @@ export class GamesService {
     this.games[gameIndex].title = title;
     this.games[gameIndex].platform = platform;
     this.games[gameIndex].saveSlots = saveSlots;
+    this.games[gameIndex].pinnedSaveSlotId = pinnedSaveSlotId;
 
     this.sortGames();
     this.saveGames();
