@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Fix for misaligned icons */
+ng-icon svg {
+    margin-top: -0.2rem;
+}
