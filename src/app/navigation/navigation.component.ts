@@ -10,7 +10,9 @@ import {
   ApplicationTitle,
   GamesListPath,
   EditGamePath,
-  EditGameTitle
+  EditGameTitle,
+  AboutPath,
+  AboutTitle
 } from '../app-configuration'
 import { NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -48,6 +50,11 @@ export class NavigationComponent {
         this.navigationTitle = EditGameTitle;
         this.displayBackButton = true;
         this.backButtonRouterLink = `/${ViewGamePath}/${this.getQueryStringId()}`;
+
+      } else if (this.router.url.includes(AboutPath)) {
+        this.navigationTitle = AboutTitle;
+        this.displayBackButton = true;
+        this.backButtonRouterLink = GamesListPath;
 
       } else {
         this.navigationTitle = ApplicationTitle;

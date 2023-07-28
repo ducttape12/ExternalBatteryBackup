@@ -27,6 +27,7 @@ import { NewSaveSlotComponent } from './new-save-slot/new-save-slot.component';
 import { EditGameComponent } from './edit-game/edit-game.component';
 import { DeleteGameComponent } from './delete-game/delete-game.component';
 import { SlideOutMenuComponent } from './slide-out-menu/slide-out-menu.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SlideOutMenuComponent } from './slide-out-menu/slide-out-menu.component
     NewSaveSlotComponent,
     EditGameComponent,
     DeleteGameComponent,
-    SlideOutMenuComponent
+    SlideOutMenuComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
