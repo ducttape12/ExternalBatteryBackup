@@ -1,0 +1,18 @@
+<ng-template #menu let-offcanvas>
+    <div class="offcanvas-header">
+        <h4 class="offcanvas-title" id="offcanvas-basic-title" ngbAutofocus>
+            <ng-icon name="bootstrapBatteryCharging"></ng-icon>
+            {{applicationTitle}}
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss()"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="list-group list-group-flush">
+            <a routerLink="/" class="list-group-item list-group-item-action">Settings</a>
+            <a routerLink="/" class="list-group-item list-group-item-action">About</a>
+        </div>
+    </div>
+</ng-template>
+<a class="navbar-brand" href="#" (click)="openMenu(menu)">
+    <ng-icon name="bootstrapList"></ng-icon> {{applicationTitle}}
+</a>

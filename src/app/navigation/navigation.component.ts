@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import {
   EditGamePath,
   EditGameTitle
 } from '../app-configuration'
-import { ActivatedRoute } from '@angular/router';
+import { NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-navigation',
@@ -24,6 +24,7 @@ export class NavigationComponent {
   navigationTitle: string = '';
   displayBackButton: boolean = false;
   backButtonRouterLink: string = '';
+  applicationTitle = ApplicationTitle;
 
   constructor(private router: Router) {
     this.navigationEnd = router.events.pipe(
