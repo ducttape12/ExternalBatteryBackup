@@ -28,6 +28,7 @@ import { EditGameComponent } from './edit-game/edit-game.component';
 import { DeleteGameComponent } from './delete-game/delete-game.component';
 import { SlideOutMenuComponent } from './slide-out-menu/slide-out-menu.component';
 import { AboutComponent } from './about/about.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AboutComponent } from './about/about.component';
     EditGameComponent,
     DeleteGameComponent,
     SlideOutMenuComponent,
-    AboutComponent
+    AboutComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

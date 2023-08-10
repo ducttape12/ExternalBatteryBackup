@@ -8,7 +8,8 @@
     </div>
     <div class="offcanvas-body">
         <div class="list-group list-group-flush">
-            <a routerLink="/" class="list-group-item list-group-item-action">Settings</a>
+            <a routerLink="{{settingsPath}}" class="list-group-item list-group-item-action"
+                (click)="offcanvas.dismiss()">Settings</a>
             <a routerLink="{{aboutPath}}" class="list-group-item list-group-item-action"
                 (click)="offcanvas.dismiss()">About</a>
         </div>

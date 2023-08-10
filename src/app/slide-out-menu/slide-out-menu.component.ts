@@ -1,6 +1,6 @@
 import { Component, TemplateRef } from '@angular/core';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { AboutPath, ApplicationTitle } from '../app-configuration';
+import { AboutPath, ApplicationTitle, SettingsPath } from '../app-configuration';
 
 @Component({
   selector: 'app-slide-out-menu',
@@ -10,6 +10,7 @@ import { AboutPath, ApplicationTitle } from '../app-configuration';
 export class SlideOutMenuComponent {
   applicationTitle = ApplicationTitle;
   aboutPath = AboutPath;
+  settingsPath = SettingsPath;
 
   constructor(private offcanvasService: NgbOffcanvas) {
   }
