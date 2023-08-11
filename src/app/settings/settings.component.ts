@@ -9,6 +9,7 @@ import { GamesService } from '../games/games.service';
 export class SettingsComponent {
   jsonExport = '';
   fileNameTimestamp = '';
+  selectedFile: File | undefined;
 
   constructor(private gamesService: GamesService) { }
 
@@ -27,5 +28,29 @@ export class SettingsComponent {
 
   pad(value: number) {
     return value.toString().padStart(2, '0');
+  }
+
+  onFileSelected(fileEvent: any) {
+    this.selectedFile = fileEvent.target.files[0];
+
+  }
+
+  importData() {
+    if(this.selectedFile != undefined) {
+      const reader = new FileReader();
+      reader.addEventListener('load', (loadEvent) => {
+        const json = loadEvent.target?.result;
+  
+        if (typeof (json) === 'string') {
+          this.gamesService.importSaveGames(json);
+          alert('Data imported successfully');
+          this.selectedFile = undefined;
+        } else {
+          throw Error('Unable to load and import data');
+        }
+      });
+  
+      reader.readAsText(this.selectedFile);
+    }
   }
 }

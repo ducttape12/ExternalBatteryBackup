@@ -13,11 +13,16 @@ export class GamesService {
 
   private static readonly GamesLocalStorageKey = 'games';
 
-  games: Game[];
-  nextId: number;
+  games: Game[] = [];
+  nextId: number = 0;
 
   constructor() {
-    this.games = this.loadGames();
+    const games = this.loadGames();
+    this.initializeGames(games);
+  }
+
+  private initializeGames(loadedGames: Game[]) {
+    this.games = loadedGames;
 
     let id = 0;
     for (let game of this.games) {
@@ -164,5 +169,11 @@ export class GamesService {
     this.saveGames();
 
     return this.getGame(gameId);
+  }
+
+  importSaveGames(imported: string) {
+    const games = JSON.parse(imported);
+    this.initializeGames(games);
+    this.saveGames();
   }
 }

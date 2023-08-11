@@ -1,6 +1,22 @@
-<h1>Settings</h1>
-
-<h2>Import / Export</h2>
+<h2>Export Data</h2>
 
 <a href="data:text/json;charset=utf-8,{{jsonExport}}" class="btn btn-primary"
     download="{{fileNameTimestamp}}_external_battery_backup_export.json">Export Data to JSON</a>
+
+<hr />
+
+<h2 class="mt-2">Import Data</h2>
+<div class="mb-3">
+    <label for="importFile" class="form-label">Select a file to import</label>
+    <input class="form-control" type="file" id="importFile" (change)="onFileSelected($event)">
+
+    <div *ngIf="selectedFile !== undefined" class="mt-2">
+        <ngb-alert [dismissible]="false" [type]="'danger'">
+            <div class="text-center">
+            Warning! This will replace all existing save games.  <strong>This cannot be undone!</strong>
+
+            <button type="button" class="btn btn-primary" (click)="importData()">Import and Replace All Data</button>
+            </div>
+        </ngb-alert>
+    </div>
+</div>
